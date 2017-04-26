@@ -1,12 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package inspect_vehicle;
 
 /**
- *
+ * I am also adding a new comment to see what happens
  * @author Peter
  */
 public class Inspect_Vehicle {
