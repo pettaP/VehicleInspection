@@ -3,12 +3,18 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package inspect_vehicle;
+package View;
 
 /**
  *
  * @author Peter
  */
-public class bajs_class {
+public class View {
+    
+    private Controller  contrl;
+    
+    public View (Controller contrl){
+        this.contrl = contrl;
+    }
     
 }
