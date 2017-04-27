@@ -6,6 +6,7 @@
 package Controller;
 import Intergration.*;
 import Data.*;
+import Model.*;
 
 /**
  *
@@ -30,7 +31,9 @@ public class Controller {
     }
     
     public int searchInspectionCost (String regNum){
-        int inspectionCost = currentInspection.getInspectionCost(vehicledatabase.getInspectionList(regNum));
+        
+        this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum));
+        int inspectionCost = currentInspection.getInspectionCost();
         
         return inspectionCost;
     }

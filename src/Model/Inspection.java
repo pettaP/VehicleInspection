@@ -31,7 +31,7 @@ public class Inspection {
         return cost;
     }
     
-    public int getInspectionCost (String regNum){
+    public int getInspectionCost (){
         return this.costOfInspection;
     }
 }
