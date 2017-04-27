@@ -3,18 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package ExternalSys;
 
 /**
  *
  * @author Peter
  */
-public class View {
+public class QueDisplay {
     
-    private Controller  contrl;
+    int currentQueNumber;
     
-    public View (Controller contrl){
-        this.contrl = contrl;
+    public void QueDispaly(){
+        this.currentQueNumber = 0;
+    }
+    
+    public void nextCustomer(){
+        this.currentQueNumber++;
     }
     
 }
