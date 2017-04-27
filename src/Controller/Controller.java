@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package Controller;
-import Intergration.Garage;
+import Intergration.*;
+import Data.*;
 
 /**
  *
@@ -13,6 +14,8 @@ import Intergration.Garage;
 public class Controller {
     
     Garage garage;
+    VehicleDataBase vehicledatabase;
+    Inspection  currentInspection;
     
     public Controller(){
         this.garage = new Garage();
@@ -24,6 +27,12 @@ public class Controller {
     
     public void closeDoor(){
         garage.closeDoor();
+    }
+    
+    public int searchInspectionCost (String regNum){
+        int inspectionCost = currentInspection.getInspectionCost(vehicledatabase.getInspectionList(regNum));
+        
+        return inspectionCost;
     }
     
 }
