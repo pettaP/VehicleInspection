@@ -14,7 +14,7 @@ public class GarageDoor {
     boolean isDoorOpen;
     
     public void GargeDoor(){
-        isDoorOpen = false;
+        this.isDoorOpen = false;
     }
     
     public void openDoor(){

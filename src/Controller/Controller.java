@@ -14,12 +14,17 @@ import Model.*;
  */
 public class Controller {
     
-    Garage garage;
+    Garage          garage;
     VehicleDataBase vehicledatabase;
-    Inspection  currentInspection;
+    Inspection      currentInspection;
+    String          regNum;
+    CreditCard      customerCreditCard;
+    int             inspectionCost;
+    CashRegister    cashRegister;
     
     public Controller(){
         this.garage = new Garage();
+        this.cashRegister = new CashRegister();
     }
     
     public void startInspection(){
@@ -31,11 +36,17 @@ public class Controller {
     }
     
     public int searchInspectionCost (String regNum){
-        
+        this.regNum = regNum;
         this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum));
-        int inspectionCost = currentInspection.getInspectionCost();
+        this.inspectionCost = currentInspection.getInspectionCost();
         
         return inspectionCost;
+    }
+    
+    public void payCard(int pin, String cardNumber, String cardHolder, int expiryDate,int cvc){
+        this.customerCreditCard = new CreditCard(pin, cardNumber, cardHolder, expiryDate, cvc);
+        PaymentByCard currentTransaction = new PaymentByCard(this.customerCreditCard, this.inspectionCost);
+        
     }
     
 }
