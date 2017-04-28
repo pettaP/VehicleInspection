@@ -22,7 +22,7 @@ public class CashRegister {
         this.customerReceipt = new Receipt();
     }
     
-    private void addPaymentByCard(PaymentByCard paymentByCard){
+    public void addPaymentByCard(PaymentByCard paymentByCard){
         if (paymentByCard.isPaymentAuthorized()== true){
             this.recivedPayment = this.recivedPayment + paymentByCard.getInspectionCost();
             this.balance = this.balance + paymentByCard.getInspectionCost();
