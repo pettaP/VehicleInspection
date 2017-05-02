@@ -52,18 +52,18 @@ public class Controller {
     public int searchInspectionCost (String regNum){
         this.regNum = regNum;
         this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum));
-        this.inspectionCost = currentInspection.getInspectionCost();
+        this.inspectionCost = this.currentInspection.getInspectionCost();
         
         return inspectionCost;
     }
     
     /**
-     * 
-     * @param pin
-     * @param cardNumber
-     * @param cardHolder
-     * @param expiryDate
-     * @param cvc 
+     * This method takes the cardinformation from the customer and preforms the payment for the inspection
+     * @param pin the pinnumber for the credit card
+     * @param cardNumber the cardnumber of the customers credit card
+     * @param cardHolder the namne of the person that owns the cradit card used fpr payment
+     * @param expiryDate the expirydate for the card
+     * @param cvc the cvc code of the card
      */
     public void payCard(int pin, String cardNumber, String cardHolder, int expiryDate,int cvc){
         this.customerCreditCard = new CreditCard(pin, cardNumber, cardHolder, expiryDate, cvc);

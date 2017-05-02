@@ -13,14 +13,23 @@ public class GarageDoor {
     
     boolean isDoorOpen;
     
+    /**
+     * The constuctor creates garageDoor and set the boolean value representing the door to false (closed) by default
+     */
     public void GargeDoor(){
         this.isDoorOpen = false;
     }
     
+    /**
+     * When openDoor is called the value of the garage door is set to true (open)
+     */
     public void openDoor(){
         this.isDoorOpen = true;
     }
     
+    /**
+     * This method set the boolean value to flase (closed)
+     */
     public void closeDoor(){
         this.isDoorOpen = false;
     }
