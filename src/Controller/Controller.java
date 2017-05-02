@@ -17,10 +17,11 @@ public class Controller {
     Garage          garage;
     VehicleDataBase vehicledatabase;
     Inspection      currentInspection;
-    String          regNum;
+    String          customerRegNum;
     CreditCard      customerCreditCard;
     int             inspectionCost;
     CashRegister    cashRegister;
+    Printer         printer;
     
     /**
      * This creates an instance of controller and also starts up the classes Garage and CashRegister and sets them as attributes in the class
@@ -50,7 +51,7 @@ public class Controller {
      * @return the cost of the inspection 
      */
     public int searchInspectionCost (String regNum){
-        this.regNum = regNum;
+        this.customerRegNum = regNum;
         this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum));
         this.inspectionCost = this.currentInspection.getInspectionCost();
         
@@ -69,6 +70,14 @@ public class Controller {
         this.customerCreditCard = new CreditCard(pin, cardNumber, cardHolder, expiryDate, cvc);
         PaymentByCard currentTransaction = new PaymentByCard(this.customerCreditCard, this.inspectionCost);
         cashRegister.addPaymentByCard(currentTransaction);
+    }
+    
+    public String getNextSpecefiedInspection(String isCurrentInspectionPassed, String currentInspectionResults){
+        return currentInspection.getNextSpecefiedInspection(isCurrentInspectionPassed, currentInspectionResults);
+    }
+    
+    public void printInspectionResults (){
+        printer.printResults(currentInspection.getSpecefiedInspectionList());
     }
     
 }

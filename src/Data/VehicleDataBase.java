@@ -11,7 +11,7 @@ package Data;
  */
 public class VehicleDataBase {
     
-    SpecefiedInspection[]   vehicledatabase;
+    SpecefiedInspection[]   currentInspectionList;
     String                  regNum;
     
     /**
@@ -21,24 +21,39 @@ public class VehicleDataBase {
      */
     public VehicleDataBase(){
         
-        SpecefiedInspection[]   vehicledatabase = {    (new SpecefiedInspection("Breaks", 30)), 
-                                                       (new SpecefiedInspection("Steering", 50)), 
-                                                       (new SpecefiedInspection(null, 0))};
+        SpecefiedInspection[]   currentInspectionList = {   (new SpecefiedInspection("Breaks", 30, "Comment", "fail")), 
+                                                            (new SpecefiedInspection("Steering", 50, "Comment", "pass" )), 
+                                                            (new SpecefiedInspection("Window", 0, "Comment", "fail"))};
         this.regNum = "abc123";
     }
     
     /**
      * This method checks the regnumber in the parameter and returns a list of speciefied inspections if the parameter is the same as the attribute in the class
-     * @param regNum - the registration number of the vehicle that is about to be inspected
-     * @return a list of specefied inspections and the cost of the pecefied inspection
+     * Creates a new list of the items that needs to be inspected. The components which are amrked as fail or false for isInspectionPassed
+     * @param customerRegNum - the registration number of the vehicle that is about to be inspected
+     * @return a list of specefied inspections and the cost of the specefied inspection
      */
-    public SpecefiedInspection[] getInspectionList(String regNum){
+    public SpecefiedInspection[] getInspectionList(String customerRegNum){
+        int counter = 0;
         
-        if (regNum.equalsIgnoreCase(this.regNum)){
-            return  this.vehicledatabase;
+        for (SpecefiedInspection currentInspectionList1 : currentInspectionList) {
+            if (currentInspectionList1.isInspectionPassed() == true) {
+                counter++;
+            }
         }
-        else
-            return null; 
+        int currentIndex = 0;
+        SpecefiedInspection[]   currentSpecefiedInspectionList = new SpecefiedInspection[counter];
+        
+        if (customerRegNum.equalsIgnoreCase(this.regNum)){
+            for (SpecefiedInspection currentInspectionList1 : currentInspectionList){
+                if (currentInspectionList1.isInspectionPassed() == false){
+                    currentSpecefiedInspectionList[currentIndex] = currentInspectionList1;
+                    currentIndex++;
+                }
+            }
+        }
+
+        return currentSpecefiedInspectionList; 
     }
     
 }

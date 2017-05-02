@@ -5,13 +5,15 @@
  */
 package Intergration;
 import  Model.*;
+import  Controller.*;
+import Data.SpecefiedInspection;
 
 /**
  *
  * @author Peter
  */
 public class Printer {
-    
+ 
     public Printer(){
         
     }
@@ -25,6 +27,19 @@ public class Printer {
        System.out.println ("Amonut received: " + currentReceiptToPrint.getAmountPaid());
        System.out.println ("Taxes included in price: " + currentReceiptToPrint.getVat());
        System.out.println (currentReceiptToPrint.getComment());
+    }
+    
+    /**
+     * Creates a print out for each component that was inspected and the status of the component and comments
+     * @param currentResults accepts an array of specefied inspections
+     */
+    public void printResults (SpecefiedInspection[] currentResults ){
+        for (int i = 0; i < currentResults.length; i++){
+            System.out.println (currentResults[i].getComponentToInspect());
+            System.out.println (currentResults[i].isInspectionPassed());
+            System.out.println (currentResults[i].getInspectionComment());
+            System.out.println ();
+        }
     }
     
 }

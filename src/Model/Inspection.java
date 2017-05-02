@@ -16,6 +16,7 @@ public class Inspection {
     String                  regNum;
     SpecefiedInspection[]   inspectionList;
     int                     costOfInspection;
+    int                     indexOfComponentToInspect;
     
     /**
      * The constructor creates a new Inspection and set the attributes of this to the current registartion number, 
@@ -27,6 +28,7 @@ public class Inspection {
         this.regNum = regNum;
         this.inspectionList = inspectionList;
         this.costOfInspection = calculateCost(inspectionList);
+        this.indexOfComponentToInspect = 0;
     }
     
     /**
@@ -48,5 +50,42 @@ public class Inspection {
      */
     public int getInspectionCost (){
         return this.costOfInspection;
+    }
+    
+    /**
+     * Returns the current specefied inspection for the vehicle
+     * If list is finished it returns a satement informing this and restarts
+     * It also accepts comments and boolean value for if the inspection is passed. These values are stored to the element prior to the current elemtn to be returned
+     * @param isCurrentInspectionPassed
+     * @param currentInspectionResults
+     * @return 
+     */
+    public String getNextSpecefiedInspection(String isCurrentInspectionPassed, String currentInspectionResults){
+        String  componentToInspect;
+        if (indexOfComponentToInspect > inspectionList.length){
+            componentToInspect = "End of inspection list. Inspection compleated";
+            inspectionList[indexOfComponentToInspect - 1].setInspectionPassed(isCurrentInspectionPassed);
+            inspectionList[indexOfComponentToInspect - 1].setInspectionResult(currentInspectionResults);
+            indexOfComponentToInspect = 0;
+        }
+        if (isCurrentInspectionPassed.equalsIgnoreCase("start inspection")){
+            componentToInspect = inspectionList[indexOfComponentToInspect].getComponentToInspect();
+            indexOfComponentToInspect++;
+        }
+        else {
+            componentToInspect = inspectionList[indexOfComponentToInspect].getComponentToInspect();
+            inspectionList[indexOfComponentToInspect - 1].setInspectionPassed(isCurrentInspectionPassed);
+            inspectionList[indexOfComponentToInspect - 1].setInspectionResult(currentInspectionResults);
+            indexOfComponentToInspect++;
+        }
+        return componentToInspect;
+    }
+    
+    /**
+     * returns the specefied inspection list
+     * @return the specefied inspection list
+     */
+    public SpecefiedInspection[] getSpecefiedInspectionList(){
+        return this.inspectionList;
     }
 }
