@@ -31,6 +31,7 @@ public class CreditCard {
         this.cardHolder = cardHolder;
         this.expiryDate = expiryDate;
         this.cvc = cvc;
+        System.out.println ("\n" + "Creating a credit card with information provided by paying customer");
     }
     
     /**

@@ -9,7 +9,7 @@ import  Controller.*;
 import java.util.Scanner;
 
 /**
- *
+ *Hardcoded code to run the program and make all the calls 
  * @author Peter
  */
 public class View {

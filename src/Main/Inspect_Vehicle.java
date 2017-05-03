@@ -16,6 +16,10 @@ import View.*;
  */
 public class Inspect_Vehicle {
     
+    /**
+     * Setup for the program. Calling constructors in the program
+     * @param Args 
+     */
     public static void main (String[] Args){
        
        VehicleDataBase  vdb = new VehicleDataBase();

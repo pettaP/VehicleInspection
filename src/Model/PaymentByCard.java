@@ -23,6 +23,7 @@ public class PaymentByCard {
     * @param currentInspectionCost 
     */
     public PaymentByCard(CreditCard customerCreditCard, int currentInspectionCost){
+        System.out.println ("\n" + "Creating an object PaymentByCard where all information for payment is encapsulated");
         this.customerCreditCard = customerCreditCard;
         this.inspectionCost = currentInspectionCost;
         PaymentApproval currentPaymentApp = new PaymentApproval(this.customerCreditCard, this.inspectionCost);

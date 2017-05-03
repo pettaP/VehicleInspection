@@ -27,6 +27,7 @@ public class Receipt {
      * @return an object of receipt
      */
     public Receipt makeReceipt(PaymentByCard paymentByCard){
+        System.out.println ("\n" + "A recepit with cost, money paid and taxes is created");
         this.amountDue = paymentByCard.getInspectionCost();
         if (paymentByCard.isPaymentAuthorized() == true){
             this.amountPaid = paymentByCard.getInspectionCost();

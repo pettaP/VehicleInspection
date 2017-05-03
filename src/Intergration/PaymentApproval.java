@@ -34,6 +34,8 @@ public class PaymentApproval {
      * @return a boolean value true/false if payment is possible 
      */
     public boolean getAuth(){
-        return (creditCardToBeApproved.getCardNumber().equals(this.dummyCardNumber)) && (costToBeChargedToCreditCard < defaultBalance);
+        boolean auth = (creditCardToBeApproved.getCardNumber().equals(this.dummyCardNumber)) && (costToBeChargedToCreditCard < defaultBalance);
+        System.out.println ("\n" + "Returning if credit card is approved for the current transaction based on inspection cost and credit card information. " + "CreditCard approved: " + auth);
+        return auth;
     }
 }

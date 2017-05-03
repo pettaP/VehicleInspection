@@ -57,6 +57,7 @@ public class Controller {
         this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum));
         this.inspectionCost = this.currentInspection.getInspectionCost();
         
+        System.out.println ("\n" + "Displaying inspection cost for vehicle");
         return inspectionCost;
     }
     
@@ -74,14 +75,28 @@ public class Controller {
         cashRegister.addPaymentByCard(currentTransaction);
     }
     
+    /**
+     * This method checks if the current inspection list has a nother element. Tis is for the while loop in view when inspection items are sent to the inspector
+     * @return true if there is another element in the array. Otherwise reurns false
+     */
     public boolean arrayHasNext(){
         return currentInspection.arrayHasNext();
     }
     
+    /**
+     * This method uses the specefied inspection list an iterrates through it return each component that needs to be inspected on the vehicle
+     * @param isCurrentInspectionPassed a string pass/fail telling the program if component passed inspection
+     * @param currentInspectionResults a string of comments about the inspected component
+     * @return a string specifing the next component to be inspected
+     */
     public String getNextSpecefiedInspection(String isCurrentInspectionPassed, String currentInspectionResults){
+        System.out.println ("\n" + "Fetching the components that are to be inspected and storing the result of the inspection");
         return currentInspection.getNextSpecefiedInspection(isCurrentInspectionPassed, currentInspectionResults);
     }
-    
+    /**
+     * This method gathers the information stored about each inspected component on the vehicle and sends the to the printer
+     * to be printedt out and handed to the customer.
+     */
     public void printInspectionResults (){
         printer.printResults(currentInspection.getSpecefiedInspectionList());
     }

@@ -32,6 +32,7 @@ public class Inspection {
         this.costOfInspection = calculateCost(inspectionList);
         this.indexOfComponentToInspect = 0;
         this.arrayHasNext = true;
+        System.out.println ("\n" + "Creating a new inspection for vehicle");
     }
     
     /**
@@ -44,7 +45,7 @@ public class Inspection {
         for (SpecefiedInspection inspectionList1 : inspectionList) {
             cost = cost + inspectionList1.getCostOfComponentToInspect();
         }
-        
+        System.out.println ("\n" + "Calculating the total cost for the inspection by adding the individual cost of components specefied in the list created by VDB");
         return cost;
     }
     /**
@@ -52,12 +53,13 @@ public class Inspection {
      * @return the total cost for all inspections on the vehicle
      */
     public int getInspectionCost (){
+        System.out.println ("\n" + "Returning the calculated inspection cost");
         return this.costOfInspection;
     }
     
     /**
      * Returns the current specefied inspection for the vehicle
-     * If list is finished it returns a satement informing this and restarts
+     * If list is finished it returns a satement informing this 
      * It also accepts comments and boolean value for if the inspection is passed. These values are stored to the element prior to the current elemtn to be returned
      * @param isCurrentInspectionPassed
      * @param currentInspectionResults
@@ -94,6 +96,10 @@ public class Inspection {
         return this.inspectionList;
     }
     
+    /**
+     * if the array has another element. To help while loop in view
+     * @return true/false
+     */
     public boolean arrayHasNext(){
         return this.arrayHasNext;
     }

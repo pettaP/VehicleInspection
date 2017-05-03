@@ -24,6 +24,7 @@ public class Printer {
      * @param currentReceiptToPrint obejct of Receipt with all payment information stored
      */
     public void printCustomerReceipt(Receipt currentReceiptToPrint){
+       System.out.println ("\n" + "The class Printer prints the recepit using informating from the class Receipt");
        System.out.println ();
        System.out.println ("Amount due: " + currentReceiptToPrint.getAmountDue());
        System.out.println ("Amonut received: " + currentReceiptToPrint.getAmountPaid());
@@ -37,6 +38,7 @@ public class Printer {
      * @param currentResults accepts an array of specefied inspections
      */
     public void printResults (SpecefiedInspection[] currentResults ){
+        System.out.println ("\n" + "Creating a result printout with the results and comments from the inspection.");
         for (int i = 0; i < currentResults.length; i++){
             System.out.println (currentResults[i].getComponentToInspect());
             System.out.println (currentResults[i].isInspectionPassed());
@@ -46,6 +48,10 @@ public class Printer {
         }
     }
     
+    /**
+     * Used for testing program
+     * @return a string prepresenting the last action of the printer
+     */
     public String getPrinterStatus(){
         return this.printerStatus;
     }

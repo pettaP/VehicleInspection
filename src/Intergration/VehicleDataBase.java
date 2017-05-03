@@ -55,7 +55,7 @@ public class VehicleDataBase {
                 }
             }
         }
-
+        System.out.println ("\n" + "Creating and returning a specefied inspection list based on the registration number and which current inspections there are to be made");
         return currentSpecefiedInspectionList; 
     }
     

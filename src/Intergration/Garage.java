@@ -6,7 +6,7 @@
 package Intergration;
 import  ExternalSys.GarageDoor;
 import  ExternalSys.QueDisplay;
-import  TestState.*;
+
 
 /**
  *
@@ -31,6 +31,7 @@ public class Garage {
     public void newCustomer (){
         queDisplay.nextCustomer();
         garageDoor.openDoor();
+        System.out.println ("\n" + "Opening garage door and changing number on quenumber display");
     }
     
     /**
@@ -38,6 +39,7 @@ public class Garage {
      */
     public void closeDoor(){
         garageDoor.closeDoor();
+        System.out.println ("\n" + "Closing the garage door");
     }
     
     /**

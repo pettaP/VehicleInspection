@@ -34,6 +34,7 @@ public class CashRegister {
      * @param paymentByCard 
      */
     public void addPaymentByCard(PaymentByCard paymentByCard){
+        System.out.println ("\n" + "Card is approved and the payment is registerd in CashRegister and balance is updated");
         if (paymentByCard.isPaymentAuthorized()== true){
             this.recivedPayment = this.recivedPayment + paymentByCard.getInspectionCost();
             this.balance = this.balance + paymentByCard.getInspectionCost();
