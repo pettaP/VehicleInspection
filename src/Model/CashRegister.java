@@ -21,9 +21,9 @@ public class CashRegister {
      * It creates an instance of the object Printer used for printing the receipt
      * It creates an instance of the object Receipt where information about the transaction is stored. This is later sent to the printer
      */
-    public CashRegister(){
+    public CashRegister(Printer newPrinter){
         this.balance = 1000;
-        this.printer = new Printer();
+        this.printer = newPrinter;
         this.customerReceipt = new Receipt();
     }
     

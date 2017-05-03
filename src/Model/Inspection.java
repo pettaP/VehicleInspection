@@ -18,6 +18,8 @@ public class Inspection {
     SpecefiedInspection[]   inspectionList;
     int                     costOfInspection;
     int                     indexOfComponentToInspect;
+    boolean                 arrayHasNext;
+    String                  componentToInspect;
     
     /**
      * The constructor creates a new Inspection and set the attributes of this to the current registartion number, 
@@ -30,6 +32,7 @@ public class Inspection {
         this.inspectionList = inspectionList;
         this.costOfInspection = calculateCost(inspectionList);
         this.indexOfComponentToInspect = 0;
+        this.arrayHasNext = true;
     }
     
     /**
@@ -62,22 +65,24 @@ public class Inspection {
      * @return 
      */
     public String getNextSpecefiedInspection(String isCurrentInspectionPassed, String currentInspectionResults){
-        String  componentToInspect;
-        if (indexOfComponentToInspect > inspectionList.length){
+        if (indexOfComponentToInspect == inspectionList.length){
             componentToInspect = "End of inspection list. Inspection compleated";
             inspectionList[indexOfComponentToInspect - 1].setInspectionPassed(isCurrentInspectionPassed);
             inspectionList[indexOfComponentToInspect - 1].setInspectionResult(currentInspectionResults);
-            indexOfComponentToInspect = 0;
         }
-        if (isCurrentInspectionPassed.equalsIgnoreCase("start inspection")){
+        if (indexOfComponentToInspect < inspectionList.length) {
+            if (indexOfComponentToInspect == 0){
             componentToInspect = inspectionList[indexOfComponentToInspect].getComponentToInspect();
-            indexOfComponentToInspect++;
-        }
-        else {
+            indexOfComponentToInspect = 1;
+            }
+            else{
             componentToInspect = inspectionList[indexOfComponentToInspect].getComponentToInspect();
             inspectionList[indexOfComponentToInspect - 1].setInspectionPassed(isCurrentInspectionPassed);
             inspectionList[indexOfComponentToInspect - 1].setInspectionResult(currentInspectionResults);
             indexOfComponentToInspect++;
+                if (indexOfComponentToInspect == inspectionList.length)
+                    arrayHasNext = false;
+            }
         }
         return componentToInspect;
     }
@@ -88,5 +93,9 @@ public class Inspection {
      */
     public SpecefiedInspection[] getSpecefiedInspectionList(){
         return this.inspectionList;
+    }
+    
+    public boolean arrayHasNext(){
+        return this.arrayHasNext;
     }
 }

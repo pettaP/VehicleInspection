@@ -13,6 +13,8 @@ import  Controller.*;
  */
 public class Printer {
  
+    String     printerStatus;
+    
     public Printer(){
         
     }
@@ -22,10 +24,12 @@ public class Printer {
      * @param currentReceiptToPrint obejct of Receipt with all payment information stored
      */
     public void printCustomerReceipt(Receipt currentReceiptToPrint){
+       System.out.println ();
        System.out.println ("Amount due: " + currentReceiptToPrint.getAmountDue());
        System.out.println ("Amonut received: " + currentReceiptToPrint.getAmountPaid());
        System.out.println ("Taxes included in price: " + currentReceiptToPrint.getVat());
-       System.out.println (currentReceiptToPrint.getComment());
+       System.out.println (currentReceiptToPrint.getComment() + "\n");
+       printerStatus = currentReceiptToPrint.getComment();
     }
     
     /**
@@ -38,7 +42,11 @@ public class Printer {
             System.out.println (currentResults[i].isInspectionPassed());
             System.out.println (currentResults[i].getInspectionComment());
             System.out.println ();
+            printerStatus = "ResultsPrinted";
         }
     }
     
+    public String getPrinterStatus(){
+        return this.printerStatus;
+    }
 }

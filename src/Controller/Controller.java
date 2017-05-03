@@ -28,9 +28,9 @@ public class Controller {
      */
     public Controller(VehicleDataBase newVehicleDataBase, Printer newPrinter){
         this.garage = new Garage();
-        this.cashRegister = new CashRegister();
-        this.vehicledatabase = newVehicleDataBase;
         this.printer = newPrinter;
+        this.cashRegister = new CashRegister(printer);
+        this.vehicledatabase = newVehicleDataBase;
     }
     
     /**
@@ -72,6 +72,10 @@ public class Controller {
         this.customerCreditCard = new CreditCard(pin, cardNumber, cardHolder, expiryDate, cvc);
         PaymentByCard currentTransaction = new PaymentByCard(this.customerCreditCard, this.inspectionCost);
         cashRegister.addPaymentByCard(currentTransaction);
+    }
+    
+    public boolean arrayHasNext(){
+        return currentInspection.arrayHasNext();
     }
     
     public String getNextSpecefiedInspection(String isCurrentInspectionPassed, String currentInspectionResults){

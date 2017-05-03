@@ -6,6 +6,7 @@
 package View;
 import  Main.*;
 import  Controller.*;
+import java.util.Scanner;
 
 /**
  *
@@ -31,7 +32,23 @@ public class View {
         
         contrl.payCard(1234, "1234567890", "Tomas Andersson", 213, 311);
         
-        //String nextSpecefiedInstruction = contrl.getNextSpecefiedInspection(isCurrentInspectionPassed, currentInspectionResults)
+        Scanner     sc = new Scanner (System.in);
+        System.out.println ("\n" + "press enter to start receive inspection item");
+        String line1 = sc.nextLine();
+        System.out.println ("Press enter to start");
+        String line2 = sc.nextLine();
+        
+        while (contrl.arrayHasNext()){
+            
+            String nextSpecefiedInspection = contrl.getNextSpecefiedInspection(line1, line2);
+            System.out.println (nextSpecefiedInspection);
+            System.out.println ("Is inspection passed? pass/fail: ");
+            line1 = sc.nextLine();
+            System.out.println ("Comment to current inspection: ");
+            line2 = sc.nextLine();
+        }
+        
+        System.out.println  (contrl.getNextSpecefiedInspection(line1, line2));
         
         contrl.printInspectionResults();
     }
