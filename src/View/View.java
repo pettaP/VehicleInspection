@@ -28,7 +28,7 @@ public class View {
         contrl.closeDoor();
         
         inspectioncost = contrl.searchInspectionCost("abc123");
-        System.out.print ("The inspection cost is: " + inspectioncost);
+        System.out.print ("The inspection cost is: " + inspectioncost + "\n");
         
         contrl.payCard(1234, "1234567890", "Tomas Andersson", 213, 311);
         
@@ -41,8 +41,8 @@ public class View {
         while (contrl.arrayHasNext()){
             
             String nextSpecefiedInspection = contrl.getNextSpecefiedInspection(line1, line2);
-            System.out.println (nextSpecefiedInspection);
-            System.out.println ("Is inspection passed? pass/fail: ");
+            System.out.println ("\n" + nextSpecefiedInspection);
+            System.out.println ("\n"+"Is inspection passed? pass/fail: ");
             line1 = sc.nextLine();
             System.out.println ("Comment to current inspection: ");
             line2 = sc.nextLine();
@@ -50,6 +50,7 @@ public class View {
         
         System.out.println  (contrl.getNextSpecefiedInspection(line1, line2));
         
+        System.out.println ();
         contrl.printInspectionResults();
     }
     

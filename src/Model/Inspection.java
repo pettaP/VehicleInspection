@@ -6,7 +6,6 @@
 package Model;
 import Intergration.SpecefiedInspection;
 import Intergration.*;
-import Data.*;
 import Controller.*;
 /**
  *
