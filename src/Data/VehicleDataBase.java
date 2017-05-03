@@ -5,6 +5,8 @@
  */
 package Data;
 
+import Intergration.SpecefiedInspection;
+
 /**
  *
  * @author Peter
@@ -21,9 +23,10 @@ public class VehicleDataBase {
      */
     public VehicleDataBase(){
         
-        SpecefiedInspection[]   currentInspectionList = {   (new SpecefiedInspection("Breaks", 30, "Comment", "fail")), 
+        SpecefiedInspection[]   temp                  = {   (new SpecefiedInspection("Breaks", 30, "Comment", "fail")), 
                                                             (new SpecefiedInspection("Steering", 50, "Comment", "pass" )), 
-                                                            (new SpecefiedInspection("Window", 0, "Comment", "fail"))};
+                                                            (new SpecefiedInspection("Window", 40, "Comment", "fail"))};
+        this.currentInspectionList = temp;
         this.regNum = "abc123";
     }
     
@@ -37,7 +40,7 @@ public class VehicleDataBase {
         int counter = 0;
         
         for (SpecefiedInspection currentInspectionList1 : currentInspectionList) {
-            if (currentInspectionList1.isInspectionPassed() == true) {
+            if (currentInspectionList1.isInspectionPassed() == false) {
                 counter++;
             }
         }

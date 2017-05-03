@@ -26,9 +26,11 @@ public class Controller {
     /**
      * This creates an instance of controller and also starts up the classes Garage and CashRegister and sets them as attributes in the class
      */
-    public Controller(){
+    public Controller(VehicleDataBase newVehicleDataBase, Printer newPrinter){
         this.garage = new Garage();
         this.cashRegister = new CashRegister();
+        this.vehicledatabase = newVehicleDataBase;
+        this.printer = newPrinter;
     }
     
     /**

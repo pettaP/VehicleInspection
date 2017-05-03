@@ -16,7 +16,7 @@ public class GarageDoor {
     /**
      * The constuctor creates garageDoor and set the boolean value representing the door to false (closed) by default
      */
-    public void GargeDoor(){
+    public GarageDoor(){
         this.isDoorOpen = false;
     }
     
@@ -32,5 +32,9 @@ public class GarageDoor {
      */
     public void closeDoor(){
         this.isDoorOpen = false;
+    }
+    
+    public boolean isDoorOpen(){
+        return this.isDoorOpen;
     }
 }

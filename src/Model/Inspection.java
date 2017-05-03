@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package Model;
+import Intergration.SpecefiedInspection;
 import Intergration.*;
 import Data.*;
 import Controller.*;

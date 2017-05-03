@@ -75,5 +75,50 @@ public class ControllerTest {
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
+
+    /**
+     * Test of payCard method, of class Controller.
+     */
+    @Test
+    public void testPayCard() {
+        System.out.println("payCard");
+        int pin = 0;
+        String cardNumber = "";
+        String cardHolder = "";
+        int expiryDate = 0;
+        int cvc = 0;
+        Controller instance = new Controller();
+        instance.payCard(pin, cardNumber, cardHolder, expiryDate, cvc);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of getNextSpecefiedInspection method, of class Controller.
+     */
+    @Test
+    public void testGetNextSpecefiedInspection() {
+        System.out.println("getNextSpecefiedInspection");
+        String isCurrentInspectionPassed = "";
+        String currentInspectionResults = "";
+        Controller instance = new Controller();
+        String expResult = "";
+        String result = instance.getNextSpecefiedInspection(isCurrentInspectionPassed, currentInspectionResults);
+        assertEquals(expResult, result);
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
+
+    /**
+     * Test of printInspectionResults method, of class Controller.
+     */
+    @Test
+    public void testPrintInspectionResults() {
+        System.out.println("printInspectionResults");
+        Controller instance = new Controller();
+        instance.printInspectionResults();
+        // TODO review the generated test code and remove the default call to fail.
+        fail("The test case is a prototype.");
+    }
     
 }

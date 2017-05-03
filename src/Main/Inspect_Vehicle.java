@@ -4,24 +4,26 @@
  * and open the template in the editor.
  */
 package Main;
-import  Data.*;
-import  Intergration.*;
-import  Model.*;
-import  Controller.*;
-import  View.*;
+
+import Controller.Controller;
+import Data.VehicleDataBase;
+import Intergration.Printer;
+import View.*;
+
 /**
  *
  * @author Peter
  */
-public class StartUp {
+public class Inspect_Vehicle {
     
-   public static void Main (String[] Args){
+    public static void main (String[] Args){
        
        VehicleDataBase  vdb = new VehicleDataBase();
-       Controller       contrl = new Controller();
-       View             view = new View();
        Printer          printer = new Printer();
+       Controller       contrl = new Controller(vdb, printer);
+       View             view = new View(contrl);
+       
+       view.runProgram();
    }
+    
 }
-
-

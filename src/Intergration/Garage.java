@@ -19,7 +19,7 @@ public class Garage {
     /**
      * constructor creates instances of Garagedoor and Quedisplay
      */
-    public void Garage (){
+    public Garage (){
         this.garageDoor = new GarageDoor();
         this.queDisplay = new QueDisplay();
     }
@@ -37,5 +37,13 @@ public class Garage {
      */
     public void closeDoor(){
         garageDoor.closeDoor();
+    }
+    
+    /**
+     * Code for testing methods
+     * @return true if door is open and que numer is 1
+     */
+    public boolean isDoorOpenAndDisplayOne(){
+        return (garageDoor.isDoorOpen() == true) && (queDisplay.getCurrentQueNumber() == 1);
     }
 }
