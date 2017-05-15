@@ -6,6 +6,7 @@
 package View;
 import  Main.*;
 import  Controller.*;
+import Exceptions.DataBaseAccesException;
 import java.util.Scanner;
 
 /**
@@ -16,23 +17,33 @@ public class View {
     
     Controller  contrl;
     int         inspectioncost;
+    boolean     search = true;
     
     public View(Controller contrl){
         this.contrl = contrl;
     }
     
-    public void runProgram (){
-        
+    public void runProgram()throws DataBaseAccesException{
+        Scanner     sc = new Scanner (System.in);
         contrl.startInspection();
         
         contrl.closeDoor();
-        
-        inspectioncost = contrl.searchInspectionCost("abc123");
-        System.out.print ("The inspection cost is: " + inspectioncost + "\n");
+       
+        try{
+            System.out.println ("\nEnter current registration number: ");
+            String  regNum = sc.nextLine();
+            inspectioncost = contrl.searchInspectionCost(regNum);
+            search = false;
+            }
+            catch(DataBaseAccesException e){
+                System.out.println (e.getMessage());
+            }
+       
+ 
+        System.out.print ("\nThe inspection cost is: " + inspectioncost + "\n");
         
         contrl.payCard(1234, "1234567890", "Tomas Andersson", 213, 311);
-        
-        Scanner     sc = new Scanner (System.in);
+       
         System.out.println ("\n" + "press enter to start receive inspection item");
         String line1 = sc.nextLine();
         System.out.println ("Press enter to start");

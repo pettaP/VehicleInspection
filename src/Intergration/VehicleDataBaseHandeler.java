@@ -5,29 +5,35 @@
  */
 package Intergration;
 
-import Intergration.SpecefiedInspection;
+import Exceptions.*;
 
 /**
  *
  * @author Peter
  */
-public class VehicleDataBase {
+public class VehicleDataBaseHandeler {
     
     SpecefiedInspection[]   currentInspectionList;
-    String                  regNum;
+    String                  searchedRegNum;
+    String[]                legalRegNumbers = new String[5];
     
     /**
      * The cinstructor creates an instance of a "dummy" SpeciefiedInspection list. 
      * This list contains objects of SpecefiedInspection with item be inspected and their cost
      * it also sets the attribut regNum to "abc123" to be matched with the parameter sent to the method in the class
      */
-    public VehicleDataBase(){
+    public VehicleDataBaseHandeler(){
         
         SpecefiedInspection[]   temp                  = {   (new SpecefiedInspection("Breaks", 30, "Comment", "fail")), 
                                                             (new SpecefiedInspection("Steering", 50, "Comment", "pass" )), 
                                                             (new SpecefiedInspection("Window", 40, "Comment", "fail"))};
         this.currentInspectionList = temp;
-        this.regNum = "abc123";
+        
+        legalRegNumbers[0] = "ppp321";
+        legalRegNumbers[1] = "abc123";
+        legalRegNumbers[2] = "hej111";
+        legalRegNumbers[3] = "cba123";
+        legalRegNumbers[4] = "aaa333";
     }
     
     /**
@@ -35,8 +41,18 @@ public class VehicleDataBase {
      * Creates a new list of the items that needs to be inspected. The components which are amrked as fail or false for isInspectionPassed
      * @param customerRegNum - the registration number of the vehicle that is about to be inspected
      * @return a list of specefied inspections and the cost of the specefied inspection
+     * @throws Exceptions.DataBaseAccesException
      */
-    public SpecefiedInspection[] getInspectionList(String customerRegNum){
+    public SpecefiedInspection[] getInspectionList(String customerRegNum)throws DataBaseAccesException {
+        this.searchedRegNum = customerRegNum;
+        
+        try{
+            validateRegNum(customerRegNum);
+        }
+        catch(InvalidRegNumException e){
+            throw new DataBaseAccesException(e);
+        }
+        
         int counter = 0;
         
         for (SpecefiedInspection currentInspectionList1 : currentInspectionList) {
@@ -47,7 +63,7 @@ public class VehicleDataBase {
         int currentIndex = 0;
         SpecefiedInspection[]   currentSpecefiedInspectionList = new SpecefiedInspection[counter];
         
-        if (customerRegNum.equalsIgnoreCase(this.regNum)){
+        if (customerRegNum.equalsIgnoreCase(this.searchedRegNum)){
             for (SpecefiedInspection currentInspectionList1 : currentInspectionList){
                 if (currentInspectionList1.isInspectionPassed() == false){
                     currentSpecefiedInspectionList[currentIndex] = currentInspectionList1;
@@ -59,4 +75,14 @@ public class VehicleDataBase {
         return currentSpecefiedInspectionList; 
     }
     
+    private void validateRegNum(String customerRegNum)throws InvalidRegNumException{
+        int counter = 0;
+        
+        for (String legalRegNumber : legalRegNumbers)
+            if(customerRegNum.equalsIgnoreCase(legalRegNumber))
+                counter++;
+        if (counter == 0)
+            throw new InvalidRegNumException(customerRegNum);
+        
+    }
 }

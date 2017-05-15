@@ -6,7 +6,8 @@
 package Main;
 
 import Controller.Controller;
-import Intergration.VehicleDataBase;
+import Exceptions.DataBaseAccesException;
+import Intergration.VehicleDataBaseHandeler;
 import Intergration.Printer;
 import View.*;
 
@@ -20,12 +21,13 @@ public class Inspect_Vehicle {
      * Setup for the program. Calling constructors in the program
      * @param Args 
      */
-    public static void main (String[] Args){
+    
+    public static void main (String[] Args)throws DataBaseAccesException{
        
-       VehicleDataBase  vdb = new VehicleDataBase();
-       Printer          printer = new Printer();
-       Controller       contrl = new Controller(vdb, printer);
-       View             view = new View(contrl);
+       VehicleDataBaseHandeler  vdb = new VehicleDataBaseHandeler();
+       Printer                  printer = new Printer();
+       Controller               contrl = new Controller(vdb, printer);
+       View                     view = new View(contrl);
        
        view.runProgram();
    }

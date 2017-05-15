@@ -22,7 +22,7 @@ import static org.junit.Assert.*;
  */
 public class PrinterTest {
     
-    VehicleDataBase     vdb;
+    VehicleDataBaseHandeler     vdb;
     Printer             printer;
     Controller          contrl;
     int                 inspectionCost;
@@ -43,7 +43,7 @@ public class PrinterTest {
     
     @Before
     public void setUp() {
-        this.vdb = new VehicleDataBase();
+        this.vdb = new VehicleDataBaseHandeler();
         this.printer = new Printer();
         this.contrl = new Controller(vdb, printer);
         this.inspectionCost = contrl.searchInspectionCost("abc123");

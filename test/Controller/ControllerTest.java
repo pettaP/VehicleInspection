@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Intergration.VehicleDataBase;
+import Intergration.VehicleDataBaseHandeler;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -20,7 +20,7 @@ import Intergration.*;
  */
 public class ControllerTest {
     
-    VehicleDataBase     vdb;
+    VehicleDataBaseHandeler     vdb;
     Printer             printer;
     String              regNum;
     
@@ -39,7 +39,7 @@ public class ControllerTest {
     public void setUp() {
         regNum = "abc123";
         printer = new Printer();
-        vdb = new VehicleDataBase();
+        vdb = new VehicleDataBaseHandeler();
     }
     
     @After

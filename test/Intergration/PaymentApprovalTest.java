@@ -46,7 +46,7 @@ public class PaymentApprovalTest {
     @Test
     public void testGetAuth() {
         System.out.println("getAuth");
-        VehicleDataBase vdb = new VehicleDataBase();
+        VehicleDataBaseHandeler vdb = new VehicleDataBaseHandeler();
         Printer printer = new Printer();
         Controller contrl = new Controller(vdb, printer);
         int inspcost = contrl.searchInspectionCost("abc123");
