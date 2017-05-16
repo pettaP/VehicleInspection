@@ -10,14 +10,22 @@ package ExternalSys;
  * @author Peter
  */
 public class QueDisplay {
-    
+    public static final QueDisplay  QUE_DISPLAY = new QueDisplay();
     int currentQueNumber;
     
     /**
      * The constructor set the default value of the display to zero
      */
-    public void QueDispaly(){
+    private QueDisplay(){
         this.currentQueNumber = 0;
+    }
+    
+    /**
+     *
+     * @return
+     */
+    public static QueDisplay getDisplay(){
+        return QUE_DISPLAY;
     }
     
     /**

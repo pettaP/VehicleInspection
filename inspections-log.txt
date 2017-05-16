@@ -1,0 +1,24 @@
+Invalid registration number, kdjjf, was entered at 2017-maj-16
+Intergration.InvalidRegNumException: Unable to find inspections for reg number: kdjjf
+Please try again
+	at Intergration.VehicleDataBaseHandeler.validateRegNum(VehicleDataBaseHandeler.java:89)
+	at Intergration.VehicleDataBaseHandeler.getInspectionList(VehicleDataBaseHandeler.java:53)
+	at Controller.Controller.searchInspectionCost(Controller.java:65)
+	at View.View.runProgram(View.java:38)
+	at Main.Inspect_Vehicle.main(Inspect_Vehicle.java:43)
+Invalid registration number, ksfhjfs, was entered at 2017-maj-16
+Intergration.InvalidRegNumException: Unable to find inspections for reg number: ksfhjfs
+Please try again
+	at Intergration.VehicleDataBaseHandeler.validateRegNum(VehicleDataBaseHandeler.java:89)
+	at Intergration.VehicleDataBaseHandeler.getInspectionList(VehicleDataBaseHandeler.java:53)
+	at Controller.Controller.searchInspectionCost(Controller.java:65)
+	at View.View.runProgram(View.java:38)
+	at Main.Inspect_Vehicle.main(Inspect_Vehicle.java:43)
+Invalid registration number, ls, was entered at 2017-maj-16
+Intergration.InvalidRegNumException: Unable to find inspections for reg number: ls
+Please try again
+	at Intergration.VehicleDataBaseHandeler.validateRegNum(VehicleDataBaseHandeler.java:89)
+	at Intergration.VehicleDataBaseHandeler.getInspectionList(VehicleDataBaseHandeler.java:53)
+	at Controller.Controller.searchInspectionCost(Controller.java:65)
+	at View.View.runProgram(View.java:38)
+	at Main.Inspect_Vehicle.main(Inspect_Vehicle.java:43)

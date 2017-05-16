@@ -6,6 +6,7 @@
 package Main;
 
 import Controller.Controller;
+import ExternalSys.LogHandler;
 import Intergration.DataBaseAccesException;
 import Intergration.VehicleDataBaseHandeler;
 import Intergration.Printer;
@@ -24,9 +25,11 @@ public class Inspect_Vehicle {
      */
     
     public static void main (String[] Args){
+       
        VehicleDataBaseHandeler  vdb = null;
        try{
-           vdb = new VehicleDataBaseHandeler();
+           LogHandler logger = new LogHandler();
+           vdb = new VehicleDataBaseHandeler(logger);
        }
        catch(IOException e){
            System.out.println ("Running without logger");

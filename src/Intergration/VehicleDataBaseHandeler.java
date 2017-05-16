@@ -25,8 +25,8 @@ public class VehicleDataBaseHandeler {
      * it also sets the attribut regNum to "abc123" to be matched with the parameter sent to the method in the class
      * @throws java.io.IOException
      */
-    public VehicleDataBaseHandeler() throws IOException{
-        logger = new LogHandler();
+    public VehicleDataBaseHandeler(LogHandler logger) throws IOException{
+        this.logger = logger;
         SpecefiedInspection[]   temp                  = {   (new SpecefiedInspection("Breaks", 30, "Comment", "fail")), 
                                                             (new SpecefiedInspection("Steering", 50, "Comment", "pass" )), 
                                                             (new SpecefiedInspection("Window", 40, "Comment", "fail"))};

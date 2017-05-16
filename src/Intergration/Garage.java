@@ -21,8 +21,8 @@ public class Garage {
      * constructor creates instances of Garagedoor and Quedisplay
      */
     public Garage (){
-        this.garageDoor = new GarageDoor();
-        this.queDisplay = new QueDisplay();
+        this.garageDoor = GarageDoor.getGarageDoor();
+        this.queDisplay = QueDisplay.getDisplay();
     }
     
     /**
