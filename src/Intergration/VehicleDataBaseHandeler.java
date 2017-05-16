@@ -5,6 +5,7 @@
  */
 package Intergration;
 
+import ExternalSys.ConsoleLogger;
 import ExternalSys.LogHandler;
 import java.io.IOException;
 
@@ -17,15 +18,16 @@ public class VehicleDataBaseHandeler {
     SpecefiedInspection[]   currentInspectionList;
     String                  searchedRegNum;
     String[]                legalRegNumbers = new String[5];
-    LogHandler              logger;
+    Log                     logger;
     
     /**
      * The cinstructor creates an instance of a "dummy" SpeciefiedInspection list. 
      * This list contains objects of SpecefiedInspection with item be inspected and their cost
      * it also sets the attribut regNum to "abc123" to be matched with the parameter sent to the method in the class
+     * @param logger
      * @throws java.io.IOException
      */
-    public VehicleDataBaseHandeler(LogHandler logger) throws IOException{
+    public VehicleDataBaseHandeler(Log logger) throws IOException{
         this.logger = logger;
         SpecefiedInspection[]   temp                  = {   (new SpecefiedInspection("Breaks", 30, "Comment", "fail")), 
                                                             (new SpecefiedInspection("Steering", 50, "Comment", "pass" )), 
@@ -88,5 +90,13 @@ public class VehicleDataBaseHandeler {
         if (counter == 0)
             throw new InvalidRegNumException(customerRegNum);
         
+    }
+    
+    public void setLog(Log log){
+        this.logger = log;
+    }
+    
+    public Log getLogger(){
+        return this.logger;
     }
 }

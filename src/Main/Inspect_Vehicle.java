@@ -24,11 +24,11 @@ public class Inspect_Vehicle {
      * @param Args  
      */
     
-    public static void main (String[] Args){
+    public static void main (String[] Args) throws IOException{
        
        VehicleDataBaseHandeler  vdb = null;
        try{
-           LogHandler logger = new LogHandler();
+           LogHandler logger = LogHandler.getLogHandler();
            vdb = new VehicleDataBaseHandeler(logger);
        }
        catch(IOException e){

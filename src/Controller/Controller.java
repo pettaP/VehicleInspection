@@ -62,7 +62,7 @@ public class Controller {
     public int searchInspectionCost (String regNum)throws DataBaseAccesException{
         this.customerRegNum = regNum;
         
-        this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum),insObs);
+        this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum), insObs);
         this.inspectionCost = this.currentInspection.getInspectionCost();
         
         System.out.println ("\n" + "Displaying inspection cost for vehicle");
@@ -109,6 +109,14 @@ public class Controller {
     public void printInspectionResults (){
         printer.printResults(currentInspection.getSpecefiedInspectionList());
         currentInspection.checkState();
+    }
+    
+    public void setLog(Log log){
+        vehicledatabase.setLog(log);
+    }
+    
+    public Log getLogger(){
+        return vehicledatabase.getLogger();
     }
     
 }

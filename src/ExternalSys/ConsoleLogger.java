@@ -7,7 +7,6 @@ package ExternalSys;
 
 import Intergration.InvalidRegNumException;
 import Intergration.Log;
-import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.FormatStyle;
@@ -16,17 +15,8 @@ import java.time.format.FormatStyle;
  *
  * @author Peter
  */
-public class LogHandler implements Log {
-    private static final LogHandler LOG_HANDLER = new LogHandler();
-    private static final String Log_File_Name = "inspections-log.txt";
-    private PrintWriter logFile;
-    
-    private LogHandler(){
-        try{
-            logFile = new PrintWriter(new FileWriter(Log_File_Name), true);
-        }
-        catch(IOException e){}
-    }
+public class ConsoleLogger implements Log {
+    private static final ConsoleLogger CONSOLE_LOGGER = new ConsoleLogger();
     
     @Override
     public void logException(InvalidRegNumException exc){
@@ -34,9 +24,9 @@ public class LogHandler implements Log {
         sb.append ("Invalid registration number, ");
         sb.append ( exc.getInvalidRegNum()); 
         sb.append (", was entered at ");
-        sb.append (createTime());
-        logFile.println (sb);
-        exc.printStackTrace(logFile); 
+        sb.append (createTime()+ "\n");
+        System.out.println(sb.toString());
+        
     }
     
     private String createTime(){
@@ -45,7 +35,10 @@ public class LogHandler implements Log {
         return now.format(formatter);
     }
     
-    public static LogHandler getLogHandler(){
-        return LOG_HANDLER;
+    private ConsoleLogger(){
+    }
+    
+    public static ConsoleLogger getConsoleLogger(){
+        return CONSOLE_LOGGER;
     }
 }

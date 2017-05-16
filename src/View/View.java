@@ -4,9 +4,11 @@
  * and open the template in the editor.
  */
 package View;
-import  Main.*;
 import  Controller.*;
+import ExternalSys.ConsoleLogger;
+import ExternalSys.LogHandler;
 import Intergration.DataBaseAccesException;
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -20,13 +22,15 @@ public class View {
     boolean     search = true;
     boolean     run = true;
     
-    public View(Controller contrl){
+    public View(Controller contrl) throws IOException{
         this.contrl = contrl;
     }
     
     public void runProgram(){
         Scanner     sc = new Scanner (System.in);
-       
+        
+        
+        
             contrl.startInspection();
 
             contrl.closeDoor();
@@ -40,6 +44,15 @@ public class View {
                 }
                 catch(DataBaseAccesException e){
                     System.out.println (e.getMessage());
+                    System.out.println ("\nWould you like to change logger?");
+                    System.out.println ("Yes/No");
+                    String answer = sc.nextLine();
+                    if (answer.equalsIgnoreCase("yes")){
+                        if( contrl.getLogger() instanceof LogHandler)
+                            contrl.setLog(ConsoleLogger.getConsoleLogger());
+                        else
+                            contrl.setLog(LogHandler.getLogHandler());
+                    }
                 }
             }
 
@@ -68,8 +81,8 @@ public class View {
             System.out.println ();
             contrl.printInspectionResults();
             
-            
+        }    
        
-    }
+    
     
 }
