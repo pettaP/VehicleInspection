@@ -6,10 +6,11 @@
 package Main;
 
 import Controller.Controller;
-import Exceptions.DataBaseAccesException;
+import Intergration.DataBaseAccesException;
 import Intergration.VehicleDataBaseHandeler;
 import Intergration.Printer;
 import View.*;
+import java.io.IOException;
 
 /**
  *
@@ -19,15 +20,22 @@ public class Inspect_Vehicle {
     
     /**
      * Setup for the program. Calling constructors in the program
-     * @param Args 
+     * @param Args  
      */
     
-    public static void main (String[] Args)throws DataBaseAccesException{
-       
-       VehicleDataBaseHandeler  vdb = new VehicleDataBaseHandeler();
+    public static void main (String[] Args){
+       VehicleDataBaseHandeler  vdb = null;
+       try{
+           vdb = new VehicleDataBaseHandeler();
+       }
+       catch(IOException e){
+           System.out.println ("Running without logger");
+       }
        Printer                  printer = new Printer();
-       Controller               contrl = new Controller(vdb, printer);
+       InspectionStatsView      insView = new InspectionStatsView();
+       Controller               contrl = new Controller(vdb, printer, insView);
        View                     view = new View(contrl);
+       
        
        view.runProgram();
    }

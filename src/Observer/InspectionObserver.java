@@ -3,17 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Exceptions;
+package Observer;
 
 /**
  *
  * @author Peter
  */
-public class DataBaseAccesException extends Exception {
+public interface InspectionObserver {
     
-    public DataBaseAccesException(Exception e){
-        super(e.getMessage());
-    }
-    
-    
+    void stateHasChanged(boolean finalIns);
 }

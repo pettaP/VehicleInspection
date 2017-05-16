@@ -5,7 +5,8 @@
  */
 package Intergration;
 
-import Exceptions.*;
+import ExternalSys.LogHandler;
+import java.io.IOException;
 
 /**
  *
@@ -16,14 +17,16 @@ public class VehicleDataBaseHandeler {
     SpecefiedInspection[]   currentInspectionList;
     String                  searchedRegNum;
     String[]                legalRegNumbers = new String[5];
+    LogHandler              logger;
     
     /**
      * The cinstructor creates an instance of a "dummy" SpeciefiedInspection list. 
      * This list contains objects of SpecefiedInspection with item be inspected and their cost
      * it also sets the attribut regNum to "abc123" to be matched with the parameter sent to the method in the class
+     * @throws java.io.IOException
      */
-    public VehicleDataBaseHandeler(){
-        
+    public VehicleDataBaseHandeler() throws IOException{
+        logger = new LogHandler();
         SpecefiedInspection[]   temp                  = {   (new SpecefiedInspection("Breaks", 30, "Comment", "fail")), 
                                                             (new SpecefiedInspection("Steering", 50, "Comment", "pass" )), 
                                                             (new SpecefiedInspection("Window", 40, "Comment", "fail"))};
@@ -41,7 +44,7 @@ public class VehicleDataBaseHandeler {
      * Creates a new list of the items that needs to be inspected. The components which are amrked as fail or false for isInspectionPassed
      * @param customerRegNum - the registration number of the vehicle that is about to be inspected
      * @return a list of specefied inspections and the cost of the specefied inspection
-     * @throws Exceptions.DataBaseAccesException
+     * @throws Intergration.DataBaseAccesException
      */
     public SpecefiedInspection[] getInspectionList(String customerRegNum)throws DataBaseAccesException {
         this.searchedRegNum = customerRegNum;
@@ -50,6 +53,7 @@ public class VehicleDataBaseHandeler {
             validateRegNum(customerRegNum);
         }
         catch(InvalidRegNumException e){
+            logger.logException(e);
             throw new DataBaseAccesException(e);
         }
         

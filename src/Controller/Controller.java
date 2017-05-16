@@ -4,10 +4,12 @@
  * and open the template in the editor.
  */
 package Controller;
-import Exceptions.DataBaseAccesException;
+import Intergration.DataBaseAccesException;
 import Intergration.VehicleDataBaseHandeler;
 import Intergration.*;
 import Model.*;
+import Observer.InspectionObserver;
+import View.InspectionStatsView;
 
 /**
  *
@@ -23,15 +25,18 @@ public class Controller {
     int                     inspectionCost;
     CashRegister            cashRegister;
     Printer                 printer;
+    InspectionObserver      insObs;
+    boolean                 finalInspectionResult;
     
     /**
      * This creates an instance of controller and also starts up the classes Garage and CashRegister and sets them as attributes in the class
      */
-    public Controller(VehicleDataBaseHandeler newVehicleDataBase, Printer newPrinter){
+    public Controller(VehicleDataBaseHandeler newVehicleDataBase, Printer newPrinter, InspectionObserver insObs){
         this.garage = new Garage();
         this.printer = newPrinter;
         this.cashRegister = new CashRegister(printer);
         this.vehicledatabase = newVehicleDataBase;
+        this.insObs = insObs;
     }
     
     /**
@@ -52,17 +57,13 @@ public class Controller {
      * This method is used for returning the cost of the inspection according to the vehicle
      * @param regNum registartion number of the vehicle to be inspected 
      * @return the cost of the inspection 
-     * @throws Exceptions.DataBaseAccesException 
+     * @throws Intergration.DataBaseAccesException 
      */
     public int searchInspectionCost (String regNum)throws DataBaseAccesException{
         this.customerRegNum = regNum;
-        try{
-            this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum));
-            this.inspectionCost = this.currentInspection.getInspectionCost();
-        }
-        catch(DataBaseAccesException e){
-            throw e;
-        }
+        
+        this.currentInspection = new Inspection(regNum, vehicledatabase.getInspectionList(regNum),insObs);
+        this.inspectionCost = this.currentInspection.getInspectionCost();
         
         System.out.println ("\n" + "Displaying inspection cost for vehicle");
         return inspectionCost;
@@ -100,12 +101,14 @@ public class Controller {
         System.out.println ("\n" + "Fetching the components that are to be inspected and storing the result of the inspection");
         return currentInspection.getNextSpecefiedInspection(isCurrentInspectionPassed, currentInspectionResults);
     }
+  
     /**
      * This method gathers the information stored about each inspected component on the vehicle and sends the to the printer
      * to be printedt out and handed to the customer.
      */
     public void printInspectionResults (){
         printer.printResults(currentInspection.getSpecefiedInspectionList());
+        currentInspection.checkState();
     }
     
 }

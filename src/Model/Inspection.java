@@ -5,36 +5,40 @@
  */
 package Model;
 import Intergration.SpecefiedInspection;
-import Intergration.*;
-import Controller.*;
+import Observer.*;
 /**
  *
  * @author Peter
  */
 public class Inspection {
     
-    String                  regNum;
-    SpecefiedInspection[]   inspectionList;
-    int                     costOfInspection;
-    int                     indexOfComponentToInspect;
-    boolean                 arrayHasNext;
-    String                  componentToInspect;
+    String                              regNum;
+    SpecefiedInspection[]               inspectionList;
+    int                                 costOfInspection;
+    int                                 indexOfComponentToInspect;
+    boolean                             arrayHasNext;
+    String                              componentToInspect;
+    boolean                             finalInspectionResult;
+    InspectionObserver                  insObs;
     
     /**
      * The constructor creates a new Inspection and set the attributes of this to the current registartion number, 
      * the specified inspection list, and the totalt cost of the specefied inspections
      * @param regNum the registartion number of the vehicle to be inspected
      * @param inspectionList the list recevied from the class VehicleDataBase containing the inspections for the vehicle
+     * @param insObs
      */
-    public Inspection (String regNum, SpecefiedInspection[] inspectionList){
+    public Inspection (String regNum, SpecefiedInspection[] inspectionList,InspectionObserver insObs){
         this.regNum = regNum;
         this.inspectionList = inspectionList;
         this.costOfInspection = calculateCost(inspectionList);
         this.indexOfComponentToInspect = 0;
         this.arrayHasNext = true;
+        this.finalInspectionResult = true;
+        this.insObs = insObs;
         System.out.println ("\n" + "Creating a new inspection for vehicle");
     }
-    
+ 
     /**
      * This method takes sends the inspection list to a method in the class SpeciedfiedInspection where the cost for the inspection is calculated and sent back
      * @param inspectionList contanins the specefied inspections
@@ -102,5 +106,17 @@ public class Inspection {
      */
     public boolean arrayHasNext(){
         return this.arrayHasNext;
+    }
+    
+    public void checkState(){
+        insObs.stateHasChanged(getFinalResult());
+    }
+    public boolean getFinalResult(){
+        for(SpecefiedInspection spec : inspectionList){
+            if(spec.isInspectionPassed()== false){
+                finalInspectionResult = false;
+            }
+        }
+        return finalInspectionResult;
     }
 }

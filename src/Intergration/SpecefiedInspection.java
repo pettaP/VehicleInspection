@@ -5,6 +5,9 @@
  */
 package Intergration;
 
+import Observer.*;
+import java.util.*;
+
 /**
  *
  * @author Peter
@@ -20,6 +23,8 @@ public class SpecefiedInspection {
      * Creates an object of SpecefiedInspection containing the current component to be inspected and its cost
      * @param component component on vehicle to be inspected
      * @param cost the cost of inspection the current component
+     * @param inspectionResult
+     * @param isPassed
      */
     public SpecefiedInspection(String component, int cost, String inspectionResult, String isPassed){
         this.componentToInspect = component;
@@ -76,9 +81,11 @@ public class SpecefiedInspection {
      * @param isPassed a string which is checked and boolean set accordingly 
      */
     public void setInspectionPassed (String isPassed){
-        if (isPassed.equalsIgnoreCase("pass"))
+        if (isPassed.equalsIgnoreCase("pass")){
             this.passInspection = true;
+        }
         if (isPassed.equalsIgnoreCase("fail"))
             this.passInspection = false;
     }
+    
 }

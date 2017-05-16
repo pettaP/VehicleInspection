@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Exceptions;
+package Intergration;
 
 /**
  *
@@ -14,7 +14,7 @@ public class InvalidRegNumException extends Exception {
     private String invalidRegNum;
     
     public InvalidRegNumException(String invalidRegNum){
-        super("Unable to find inspections for reg number " + invalidRegNum);
+        super("Unable to find inspections for reg number: " + invalidRegNum + "\nPlease try again");
         this.invalidRegNum = invalidRegNum;
     }
     
