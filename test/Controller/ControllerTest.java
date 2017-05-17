@@ -13,6 +13,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import Intergration.*;
+import Observer.InspectionObserver;
 
 /**
  *
@@ -23,6 +24,7 @@ public class ControllerTest {
     VehicleDataBaseHandeler     vdb;
     Printer             printer;
     String              regNum;
+    InspectionObserver  obs;
     
     public ControllerTest() {
     }
@@ -40,6 +42,12 @@ public class ControllerTest {
         regNum = "abc123";
         printer = new Printer();
         vdb = new VehicleDataBaseHandeler();
+        obs = new InspectionObserver() {
+            @Override
+            public void stateHasChanged(boolean finalIns) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
     }
     
     @After
@@ -63,9 +71,9 @@ public class ControllerTest {
      * If amount returned by method is 70 the test is passed
      */
     @Test
-    public void testSearchInspectionCost() {
+    public void testSearchInspectionCost() throws DataBaseAccesException {
         System.out.println("searchInspectionCost");
-        Controller instance = new Controller(vdb, printer);
+        Controller instance = new Controller(vdb, printer, obs);
         int expResult = 70;
         int result = instance.searchInspectionCost(regNum);
         assertEquals(expResult, result);
@@ -76,14 +84,14 @@ public class ControllerTest {
      * If returned comment matches expResult test is passed
      */
     @Test
-    public void testPayCard() {
+    public void testPayCard() throws DataBaseAccesException {
         System.out.println("payCard");
         int pin = 1234;
         String cardNumber = "1234567890";
         String cardHolder = "Tomas Andersson";
         int expiryDate = 21;
         int cvc = 331;
-        Controller instance = new Controller(vdb, printer);
+        Controller instance = new Controller(vdb, printer, obs);
         instance.searchInspectionCost(regNum);
         instance.payCard(pin, cardNumber, cardHolder, expiryDate, cvc);
         String expResult = "Thank you, welcome back";
@@ -95,14 +103,14 @@ public class ControllerTest {
      * If worng card number is entered the returned comemnt should match expresult
      */
     @Test
-    public void testPayCardFalseNumber() {
+    public void testPayCardFalseNumber() throws DataBaseAccesException {
         System.out.println("payCard");
         int pin = 1234;
         String cardNumber = "1134567890";
         String cardHolder = "Tomas Andersson";
         int expiryDate = 21;
         int cvc = 331;
-        Controller instance = new Controller(vdb, printer);
+        Controller instance = new Controller(vdb, printer, obs);
         instance.searchInspectionCost(regNum);
         instance.payCard(pin, cardNumber, cardHolder, expiryDate, cvc);
         String expResult = "Card payment was declined";
@@ -114,11 +122,11 @@ public class ControllerTest {
      * Test of getNextSpecefiedInspection method, of class Controller.
      */
     @Test
-    public void testGetNextSpecefiedInspection() {
+    public void testGetNextSpecefiedInspection() throws DataBaseAccesException {
         System.out.println("getNextSpecefiedInspection");
         String isCurrentInspectionPassed = "";
         String currentInspectionResults = "";
-        Controller instance = new Controller(vdb, printer);
+        Controller instance = new Controller(vdb, printer, obs);
         instance.searchInspectionCost(regNum);
         String expResult = "Breaks";
         String result = instance.getNextSpecefiedInspection(isCurrentInspectionPassed, currentInspectionResults);
@@ -131,9 +139,9 @@ public class ControllerTest {
      * If the returned String matches the result is passed.
      */
     @Test
-    public void testPrintInspectionResults() {
+    public void testPrintInspectionResults() throws DataBaseAccesException {
         System.out.println("printInspectionResults");
-        Controller instance = new Controller(vdb, printer);
+        Controller instance = new Controller(vdb, printer,obs);
         instance.searchInspectionCost(regNum);
         instance.printInspectionResults();
         String expResult = "ResultsPrinted";

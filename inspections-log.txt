@@ -1,16 +1,8 @@
-Invalid registration number, data, was entered at 2017-maj-16
-Intergration.InvalidRegNumException: Unable to find inspections for reg number: data
+Invalid registration number, aaa111, was entered at 2017-maj-17
+Intergration.InvalidRegNumException: Unable to find inspections for reg number: aaa111
 Please try again
 	at Intergration.VehicleDataBaseHandeler.validateRegNum(VehicleDataBaseHandeler.java:91)
 	at Intergration.VehicleDataBaseHandeler.getInspectionList(VehicleDataBaseHandeler.java:55)
 	at Controller.Controller.searchInspectionCost(Controller.java:65)
-	at View.View.runProgram(View.java:43)
-	at Main.Inspect_Vehicle.main(Inspect_Vehicle.java:43)
-Invalid registration number, data igen, was entered at 2017-maj-16
-Intergration.InvalidRegNumException: Unable to find inspections for reg number: data igen
-Please try again
-	at Intergration.VehicleDataBaseHandeler.validateRegNum(VehicleDataBaseHandeler.java:91)
-	at Intergration.VehicleDataBaseHandeler.getInspectionList(VehicleDataBaseHandeler.java:55)
-	at Controller.Controller.searchInspectionCost(Controller.java:65)
-	at View.View.runProgram(View.java:43)
-	at Main.Inspect_Vehicle.main(Inspect_Vehicle.java:43)
+	at View.View.runProgram(View.java:41)
+	at Main.Inspect_Vehicle.main(Inspect_Vehicle.java:44)

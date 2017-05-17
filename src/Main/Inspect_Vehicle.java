@@ -22,6 +22,7 @@ public class Inspect_Vehicle {
     /**
      * Setup for the program. Calling constructors in the program
      * @param Args  
+     * @throws java.io.IOException  
      */
     
     public static void main (String[] Args) throws IOException{

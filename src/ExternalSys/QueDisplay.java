@@ -15,14 +15,15 @@ public class QueDisplay {
     
     /**
      * The constructor set the default value of the display to zero
+     * Constructor declared as private. Singleton
      */
     private QueDisplay(){
         this.currentQueNumber = 0;
     }
     
     /**
-     *
-     * @return
+     *Method for returning this instance and activating the constructor
+     * @return this instance of QueNumberDisplay
      */
     public static QueDisplay getDisplay(){
         return QUE_DISPLAY;

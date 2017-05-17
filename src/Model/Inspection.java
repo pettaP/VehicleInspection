@@ -26,7 +26,7 @@ public class Inspection {
      * the specified inspection list, and the totalt cost of the specefied inspections
      * @param regNum the registartion number of the vehicle to be inspected
      * @param inspectionList the list recevied from the class VehicleDataBase containing the inspections for the vehicle
-     * @param insObs
+     * @param insObs an instance of InspectionObserver, used for notifcation for the observing class
      */
     public Inspection (String regNum, SpecefiedInspection[] inspectionList,InspectionObserver insObs){
         this.regNum = regNum;
@@ -67,7 +67,7 @@ public class Inspection {
      * It also accepts comments and boolean value for if the inspection is passed. These values are stored to the element prior to the current elemtn to be returned
      * @param isCurrentInspectionPassed
      * @param currentInspectionResults
-     * @return 
+     * @return next current compnent to inspect
      */
     public String getNextSpecefiedInspection(String isCurrentInspectionPassed, String currentInspectionResults){
         if (indexOfComponentToInspect == inspectionList.length){
@@ -108,9 +108,17 @@ public class Inspection {
         return this.arrayHasNext;
     }
     
+    /**
+     * Contacts the observer that the state has changed. Send the boolean result of the inspection so the observing class can store this result
+     */
     public void checkState(){
         insObs.stateHasChanged(getFinalResult());
     }
+    
+    /**
+     * Check if all the components for the vehilce passed inspection. If all passed the method returns true.
+     * @return value describing if total inspection passed or failed
+     */
     public boolean getFinalResult(){
         for(SpecefiedInspection spec : inspectionList){
             if(spec.isInspectionPassed()== false){

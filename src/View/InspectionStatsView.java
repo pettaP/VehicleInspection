@@ -16,6 +16,9 @@ public class InspectionStatsView implements InspectionObserver{
     int passedIns;
     int failedIns;
     
+    /**
+     * This method prints out a message to the console dislaying the current stats for the inspections performed in the program
+     */
     public void printStats(){
         System.out.println ("---------------------------------------------------");
         System.out.println ("---------------INSPECTION STATISTICS---------------");
@@ -24,7 +27,12 @@ public class InspectionStatsView implements InspectionObserver{
         System.out.println ("Number of failed inspections: " + failedIns);
         System.out.println ("---------------------------------------------------");        
     }
-
+    
+    /**
+     * Method from the interface.
+     * Recives a boolean value which alters the stats of the inspections performed depending on pass/fail - true/false
+     * @param finalRes boolean value if the current inspection has passed all its indivdual inspections
+     */
     @Override
     public void stateHasChanged(boolean finalRes) {
        totalIns++;

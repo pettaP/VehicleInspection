@@ -11,5 +11,9 @@ package Intergration;
  */
 public interface Log {
  
+    /**
+     * interface method. Writes the exception occurred to either the log file or to the console depending on which class that is currently implementing it
+     * @param exc an exception
+     */
     public void logException(InvalidRegNumException exc);
 }

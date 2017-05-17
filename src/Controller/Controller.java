@@ -105,16 +105,24 @@ public class Controller {
     /**
      * This method gathers the information stored about each inspected component on the vehicle and sends the to the printer
      * to be printedt out and handed to the customer.
+     * It also activates the method checksatae in the inspection class which notifies the observing class
      */
     public void printInspectionResults (){
         printer.printResults(currentInspection.getSpecefiedInspectionList());
         currentInspection.checkState();
     }
-    
+    /**
+     * Method is used for chaning the logger betwee printing to a file or printing to the console
+     * @param log an instance of the interface log
+     */
     public void setLog(Log log){
         vehicledatabase.setLog(log);
     }
     
+    /**
+     * Used for retreving the current logger used for printing the exceptions 
+     * @return the current logger used
+     */
     public Log getLogger(){
         return vehicledatabase.getLogger();
     }

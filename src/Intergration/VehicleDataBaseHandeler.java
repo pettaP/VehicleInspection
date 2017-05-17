@@ -40,6 +40,10 @@ public class VehicleDataBaseHandeler {
         legalRegNumbers[3] = "cba123";
         legalRegNumbers[4] = "aaa333";
     }
+
+    public VehicleDataBaseHandeler() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
     /**
      * This method checks the regnumber in the parameter and returns a list of speciefied inspections if the parameter is the same as the attribute in the class
@@ -81,6 +85,11 @@ public class VehicleDataBaseHandeler {
         return currentSpecefiedInspectionList; 
     }
     
+    /**
+     * used to create an exception. if the registartion number given doesnt match any of the list the value is 0 which causes an exception to be thrown in the method
+     * @param customerRegNum the entered registration number
+     * @throws InvalidRegNumException describing why the exception occurred
+     */
     private void validateRegNum(String customerRegNum)throws InvalidRegNumException{
         int counter = 0;
         
@@ -92,10 +101,18 @@ public class VehicleDataBaseHandeler {
         
     }
     
+    /**
+     * Changes the current logger used in the program for printing ot the exceptions
+     * @param log the current logger to be used
+     */
     public void setLog(Log log){
         this.logger = log;
     }
     
+    /**
+     * Method returns the current logger used for logging exceptions
+     * @return the current logger used
+     */
     public Log getLogger(){
         return this.logger;
     }

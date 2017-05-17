@@ -9,6 +9,7 @@ import Controller.Controller;
 import Model.CreditCard;
 import Model.PaymentByCard;
 import Model.Receipt;
+import Observer.InspectionObserver;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -29,6 +30,7 @@ public class PrinterTest {
     PaymentByCard       pbc;
     CreditCard          cc;
     Receipt             receipt;
+    InspectionObserver  obs;
     
     public PrinterTest() {
     }
@@ -42,10 +44,16 @@ public class PrinterTest {
     }
     
     @Before
-    public void setUp() {
+    public void setUp() throws DataBaseAccesException {
         this.vdb = new VehicleDataBaseHandeler();
         this.printer = new Printer();
-        this.contrl = new Controller(vdb, printer);
+        this.obs = new InspectionObserver() {
+            @Override
+            public void stateHasChanged(boolean finalIns) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+        };
+        this.contrl = new Controller(vdb, printer, obs);
         this.inspectionCost = contrl.searchInspectionCost("abc123");
         this.cc = new CreditCard(1234, "1234567890", "Tomas Andersson", 21, 331);
         this.pbc = new PaymentByCard(this.cc, this.inspectionCost);
@@ -79,11 +87,12 @@ public class PrinterTest {
 
     /**
      * Test of printResults method, of class Printer.
+     * @throws Intergration.DataBaseAccesException
      */
     @Test
-    public void testPrintResults() {
+    public void testPrintResults() throws DataBaseAccesException {
         System.out.println("printResults");
-        SpecefiedInspection[] currentResults = vdb.getInspectionList("abc123");
+        SpecefiedInspection[] currentResults = vdb.getInspectionList("abc12s3");
         printer.printResults(currentResults);
         String expResult = "ResultsPrinted";
         String result = printer.getPrinterStatus();

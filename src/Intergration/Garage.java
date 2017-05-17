@@ -18,7 +18,7 @@ public class Garage {
     QueDisplay  queDisplay;
     
     /**
-     * constructor creates instances of Garagedoor and Quedisplay
+     * constructor creates instances of Singleton Garagedoor and Quedisplay
      */
     public Garage (){
         this.garageDoor = GarageDoor.getGarageDoor();

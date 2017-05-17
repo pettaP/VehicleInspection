@@ -11,6 +11,10 @@ package Intergration;
  */
 public class DataBaseAccesException extends Exception {
     
+    /**
+     * interface method used for retreving the error message of the exception
+     * @param e an exception 
+     */
     public DataBaseAccesException(Exception e){
         super(e.getMessage());
     }

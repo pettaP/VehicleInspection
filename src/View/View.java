@@ -20,7 +20,6 @@ public class View {
     Controller  contrl;
     int         inspectioncost;
     boolean     search = true;
-    boolean     run = true;
     
     public View(Controller contrl) throws IOException{
         this.contrl = contrl;
